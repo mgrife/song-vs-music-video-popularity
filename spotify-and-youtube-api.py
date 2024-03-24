@@ -15,10 +15,8 @@ def CreateToken():
         
     url = "https://accounts.spotify.com/api/token"
     headers = {}
-    
-
-    data ={}
-
+    data = {}
+	
     clientId = "19010435a701468aaaac1fc85ab56058"
     clientSecret = "86d0ad27dfb14dfbbea6698626bff9d8"
 
@@ -30,9 +28,7 @@ def CreateToken():
 
     headers['Authorization'] = f"Basic {base64Message}"
     data['grant_type'] = "client_credentials"
-
     r = requests.post(url, headers=headers, data=data)
-
     token = r.json()['access_token']
     
     return token
@@ -41,15 +37,11 @@ def CreateToken():
 def read_in_top_songs():
     top_song_names = []
     with open("charts.csv", "r") as f:
-        
         next(f)
         for line in f:
-            
             top_song_names.append(line.split(",")[2])
 
     return top_song_names
-
-
 
 
 def get_track_ids(song_names):
